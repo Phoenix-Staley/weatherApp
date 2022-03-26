@@ -1,0 +1,44 @@
+* {
+    text-align: center;
+}
+
+h1, h2, h3 {
+    font-size: xx-large;
+}
+
+h4, h5, h6 {
+    font-size: large;
+}
+
+header {
+    width: 100vw;
+    height: 5vh;
+    background-image: linear-gradient(to right, rgb(25, 25, 100), rgb(50, 0, 125));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+main {
+    background-color: lightgrey;
+    width: 100vw;
+    height: 93vh;
+    padding-top: 2vh;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+}
+
+.search-bar div {
+    border-bottom: 4px dotted darkblue;
+    padding-bottom: 1vh;
+    margin: 10px;
+}
+
+.search-bar div input {
+    border: 3px inset grey; 
+    border-radius: 10%;
+}
