@@ -11,14 +11,15 @@
 <body>
     <header>
         <h1 class="main-header">Weather App</h1>
+        <button id="units" onclick="changeUnits()"><strong>°F</strong>/°C</button>
     </header>
     <main class="grid-container">
         <aside class="search-bar">
-            <div>
+            <form>
                 <input placeholder="Search for a city">
                 <br>
-                <button onclick="requestCity()">Request</button>
-            </div>
+                <button id="submitBtn">Request</button>
+            </form>
         </aside>
         <div>
             <h2 id="test">Temp. Here</h2>
