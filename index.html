@@ -4,27 +4,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Weather Forcast</title>
+    <link rel="icon" type="image/x-icon" href="./Assets/Images/partlyCloudy.ico">
     <link rel="stylesheet" href="./Assets/CSS/reset.css">
     <link rel="stylesheet" href="./Assets/CSS/style.css">
 </head>
 <body>
-    <header>
-        <h1 class="main-header">Weather App</h1>
-        <button id="units" onclick="changeUnits()"><strong>°F</strong>/°C</button>
-    </header>
-    <main class="grid-container">
-        <aside class="search-bar">
-            <form>
-                <input placeholder="Search for a city">
-                <br>
-                <button id="submitBtn">Request</button>
-            </form>
-        </aside>
-        <div>
-            <h2 id="test">Temp. Here</h2>
+    <main>
+        <header class="flex">
+            <h1 class="main-header">Weather App</h1>
+            <button id="units" onclick="changeUnits()"><strong>°F</strong>/°C</button>
+        </header>
+        <div id="main-container" class="container flex flex-row">
+            <aside class="search-bar">
+                <form>
+                    <input placeholder="San Diego">
+                    <br>
+                    <button id="submit-btn">Request</button>
+                </form>
+            </aside>
+            <section>
+                <div class="flex-column">
+                    <div class="flex-column" id="current-data">
+                        <h2><strong><span id="current-city">City here</span> <span id="current-date">(MM/DD/YYYY)</span></strong></h2>
+                        <h4>Temp: <span id="current-temp">__</span>°<span class="tempLetter"></span></h4>
+                        <h4>Wind: <span id="current-wind">__</span> <span class="speed"></span></h4>
+                        <h4>Humidity: <span id="current-humidity">__</span>%</h4>
+                        <h4>UV Index: <span id="current-UV">0.00</span></h4>
+                    </div>
+                    <h2><strong>5-Day Forecast:</strong></h2>
+                    <div class="flex-row" id="forecast"></div>
+                </div>
+            </section>
         </div>
     </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="./Assets/JavaScript/script.js"></script>
 </body>
-<script src="./Assets/JavaScript/script.js"></script>
 </html>
