@@ -74,13 +74,6 @@ function loadForecast(data) {
 function requestCity(event) {
     event.preventDefault();
     let city = document.querySelector(".search-bar form input").value;
-    // let splitCity = city.split("");
-    // for (let i=0; i < splitCity.length; i++) {
-    //     if (splitCity[i] === " ") {
-    //         splitCity[i] = "_";
-    //     }
-    // }
-    // city = splitCity.join("");
     fetchWeatherData(city);
 }
 
