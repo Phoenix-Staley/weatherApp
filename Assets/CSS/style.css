@@ -1,5 +1,9 @@
+:root {
+    --pale-blue: rgb(50, 75, 100);
+}
+
 * {
-    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 h1, h2, h3 {
@@ -7,7 +11,7 @@ h1, h2, h3 {
 }
 
 h4, h5, h6 {
-    font-size: large;
+    font-size: x-large;
 }
 
 strong {
@@ -19,7 +23,6 @@ header {
     height: 5vh;
     background-image: linear-gradient(to right, rgb(25, 25, 100), rgb(50, 0, 125));
     color: white;
-    display: flex;
     align-items: center;
     justify-content: center;
 }
@@ -27,13 +30,23 @@ header {
 main {
     background-color: lightgrey;
     width: 100vw;
+    height: 100vh;
+}
+
+.container {
+    width: 100vw;
     height: 93vh;
     padding-top: 2vh;
 }
 
-.grid-container {
-    display: grid;
-    grid-template-columns: 1fr 4fr;
+.container aside {
+    /* width: 25vw; */
+    height: 100%;
+}
+
+.container section {
+    width: 75vw;
+    height: 100%;
 }
 
 .search-bar form {
@@ -47,8 +60,117 @@ main {
     border-radius: 10%;
 }
 
+.flex {
+    display: flex;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+section div.flex-column {
+    margin-right: 1vh;
+}
+
+div.day {
+    background-color: var(--pale-blue);
+    color: white;
+    margin: 5px 15px;
+    /* width: 250px; */
+    /* height: 25vh; */
+    display: inline-block;
+    padding: 5px;
+}
+
+.day h4 {
+    padding: 10px;
+}
+
 #units {
     position: absolute;
-    top: 1.25vh;
-    right: 1vw;
+    top: 15px;
+    right: 15px;
+}
+
+#current-data {
+    border: 2px solid black;
+    height: 35vh;
+    padding: 1%;
+    align-content: flex-start;
+}
+
+#current-data h1, #current-data h2, #current-data h3, #current-data h4, #current-data h5, #current-data h6 {
+    padding: 20px;
+}
+
+#current-UV {
+    border-radius: 5px;
+    background-color: green;
+    color: white;
+    padding: 2px;
+}
+
+#forecast {
+    text-align: left;
+    flex-wrap: wrap;
+}
+
+#submit-btn {
+    margin-top: 15px;
+    background-color: var(--pale-blue);
+    color: white;
+}
+
+#main-container section {
+    text-align: left;
+}
+
+#main-container aside {
+    text-align: center;
+}
+
+@media only screen and (max-width: 820px) {
+    h1, h2, h3 {
+        font-size: larger;
+    }
+
+    h4, h5, h6 {
+        font-size: large;
+    }
+    
+    .search-bar {
+        width: 100vw;
+    }
+
+    .day {
+        height: 10vh;
+        width: 150px;
+    }
+
+    #current-data {
+        min-height: 150px;
+    }
+    
+    #main-container {
+        flex-direction: column;
+    }
+}
+
+@media only screen and (min-width: 821px) {
+    .search-bar {
+        width: 25vw;
+    }
+
+    .day {
+        height: 25vh;
+        width: 250px;
+    }
+
+    #current-data {
+        min-height: 300px;
+    }
 }
