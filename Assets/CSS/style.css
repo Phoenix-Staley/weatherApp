@@ -1,5 +1,5 @@
 :root {
-    --pale-blue: rgb(50, 75, 100);
+    --pale-blue: rgb(75, 112, 150);
 }
 
 * {
@@ -57,7 +57,8 @@ main {
 
 .search-bar form input {
     border: 3px inset grey; 
-    border-radius: 10%;
+    border-radius: 10px;
+    text-align: center;
 }
 
 .flex {
@@ -87,7 +88,7 @@ div.day {
 }
 
 .day h4 {
-    padding: 10px;
+    padding: 5px;
 }
 
 #units {
@@ -125,12 +126,21 @@ div.day {
     color: white;
 }
 
+#submit-btn:hover {
+    background-color: rgb(50, 75, 100);
+    cursor: pointer;
+}
+
 #main-container section {
     text-align: left;
 }
 
 #main-container aside {
     text-align: center;
+}
+
+#five-day {
+    margin: 1vh 0;
 }
 
 @media only screen and (max-width: 820px) {
@@ -147,12 +157,26 @@ div.day {
     }
 
     .day {
-        height: 10vh;
+        height: 15vh;
+        min-height: 140px;
         width: 150px;
     }
 
+    /* .day h4 {
+        padding: 1px 5px;
+    } */
+
+    img.forecast-icon {
+        height: 30px;
+        width: 30px;
+    }
+
+    .container section {
+        width: 100vw;
+    }
+
     #current-data {
-        min-height: 150px;
+        height: 300px;
     }
     
     #main-container {
@@ -161,6 +185,12 @@ div.day {
 }
 
 @media only screen and (min-width: 821px) {
+    form input {
+        height: 3vh;
+        width: 12vw;
+        font-size: larger;
+    }
+    
     .search-bar {
         width: 25vw;
     }
@@ -172,5 +202,11 @@ div.day {
 
     #current-data {
         min-height: 300px;
+    }
+
+    #submit-btn {
+        height: 3vh;
+        width: 8vw;
+        font-size: larger;
     }
 }

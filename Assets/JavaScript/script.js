@@ -51,12 +51,52 @@ function loadForecast(data) {
         var container = document.createElement("div");
         var dateEl = document.createElement("h2");
         var day = moment.unix(data.daily[i + 1].dt).format("MM/DD/YYYY");
+        var imgHolderEl = document.createElement("div");
+        var forecastImgEl = document.createElement("img");
+        var weatherStatus = data.daily[i + 1].weather[0].main;
+        var weatherID = data.daily[i + 1].weather[0].id;
         var tempEl = document.createElement("h4");
         var windEl = document.createElement("h4");
         var humidityEl = document.createElement("h4");
 
+        switch(weatherStatus) {
+            case "Thunderstorm":
+                forecastImgEl.src = "./Assets/Images/11d.png";
+                break;
+            case "Drizzle":
+                forecastImgEl.src = "./Assets/Images/10d.png";
+                break;
+            case "Rain":
+                forecastImgEl.src = "./Assets/Images/09d.png";
+                break;
+            case "Snow":
+                forecastImgEl.src = "./Assets/Images/13d.png";
+                break;
+            case "Clear":
+                forecastImgEl.src = "./Assets/Images/01d.png";
+                break;
+            case "Clear":
+                forecastImgEl.src = "./Assets/Images/01d.png";
+                break;
+            case "Clouds":
+                if (weatherID === 801) {
+                    forecastImgEl.src = "./Assets/Images/02d.png";
+                } else if (weatherID === 802) {
+                    forecastImgEl.src = "./Assets/Images/03d.png";
+                } else if (weatherID === 803 || weatherID === 804) {
+                    forecastImgEl.src = "./Assets/Images/04d.png";
+                }
+                break;
+            default:
+                forecastImgEl.src = "./Assets/Images/50d.png";
+        }
+
+        forecastImgEl.classList.add("forecast-icon");
         container.classList.add("day");
         container.classList.add("flex-column");
+        imgHolderEl.style = "text-align: center;";
+
+        
 
         dateEl.textContent = day;
         tempEl.textContent = "Temp: " + data.daily[i + 1].temp.day + "°" + unitLetters[0];
@@ -64,6 +104,8 @@ function loadForecast(data) {
         humidityEl.textContent = "Humidity: " + data.daily[i + 1].humidity + "%";
 
         container.appendChild(dateEl);
+        container.appendChild(imgHolderEl);
+        imgHolderEl.appendChild(forecastImgEl);
         container.appendChild(tempEl);
         container.appendChild(windEl);
         container.appendChild(humidityEl);
