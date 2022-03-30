@@ -1,5 +1,6 @@
 :root {
     --pale-blue: rgb(75, 112, 150);
+    --dark-pale-blue: rgb(50, 75, 100);
 }
 
 * {
@@ -24,7 +25,6 @@ header {
     background-image: linear-gradient(to right, rgb(25, 25, 100), rgb(50, 0, 125));
     color: white;
     align-items: center;
-    justify-content: center;
 }
 
 main {
@@ -73,6 +73,10 @@ main {
     flex-direction: row;
 }
 
+.justify-center {
+    justify-content: center;
+}
+
 section div.flex-column {
     margin-right: 1vh;
 }
@@ -89,6 +93,47 @@ div.day {
 
 .day h4 {
     padding: 5px;
+}
+
+button.recent {
+    display: block;
+    width: 50%;
+    height: 4vh;
+    margin-top: 5%;
+    background-color: rgb(75, 100, 150);
+}
+
+.submit-btn {
+    margin-top: 15px;
+    background-color: var(--pale-blue);
+    color: white;
+    border-radius: 10px;
+}
+
+.submit-btn:hover {
+    background-color: var(--dark-pale-blue);
+    cursor: pointer;
+}
+
+.moderate {
+    background-color: #fcce00;
+    color: black;
+}
+
+.high {
+    background-color: #aa6100;
+}
+
+.very-high {
+    background-color: #cc0000;
+}
+
+.extreme {
+    background-color: #cc00cc;
+}
+
+#recent-cities {
+    align-items: center;
 }
 
 #units {
@@ -118,17 +163,6 @@ div.day {
 #forecast {
     text-align: left;
     flex-wrap: wrap;
-}
-
-#submit-btn {
-    margin-top: 15px;
-    background-color: var(--pale-blue);
-    color: white;
-}
-
-#submit-btn:hover {
-    background-color: rgb(50, 75, 100);
-    cursor: pointer;
 }
 
 #main-container section {
@@ -204,7 +238,7 @@ div.day {
         min-height: 300px;
     }
 
-    #submit-btn {
+    .submit-btn {
         height: 3vh;
         width: 8vw;
         font-size: larger;

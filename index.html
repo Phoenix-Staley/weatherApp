@@ -11,17 +11,18 @@
 </head>
 <body>
     <main>
-        <header class="flex">
+        <header class="flex justify-center">
             <h1 class="main-header">Weather App</h1>
             <button id="units" onclick="changeUnits()"><strong>°F</strong>/°C</button>
         </header>
         <div id="main-container" class="container flex flex-row">
-            <aside class="search-bar">
+            <aside class="search-bar justify-center">
                 <form>
                     <input placeholder="San Diego">
                     <br>
-                    <button id="submit-btn">Request</button>
+                    <button class="submit-btn">Get Forecast</button>
                 </form>
+                <div id="recent-cities" class="flex flex-column justify-center"></div>
             </aside>
             <section>
                 <div class="flex-column">

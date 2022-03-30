@@ -1,29 +1,33 @@
-let APIKey = "9d0b843a2f45164f9bd4e15bbb672b54";
-if (localStorage.getItem("Preferred Units") == null) {
+const APIKey = "9d0b843a2f45164f9bd4e15bbb672b54";
+if (localStorage.getItem("Preferred Units") === null) {
     localStorage.setItem("Preferred Units", "imperial");
 }
-let units = localStorage.getItem("Preferred Units");
-let submitBtnEl = document.getElementById("submit-btn");
-let unitsBtnEl = document.getElementById("units");
+if (localStorage.getItem("recents") === null) {
+    localStorage.setItem("recents", "[]");
+}
+const units = localStorage.getItem("Preferred Units");
+const submitBtnEl = document.getElementById("submit-btn");
+const unitsBtnEl = document.getElementById("units");
 let degreeLetter = "";
 let degLetterEls = document.querySelectorAll(".tempLetter");
 let windSpeedEls = document.querySelectorAll(".speed");
-let forecastEl = document.getElementById("forecast");
-
-if (units === "imperial") {
-    unitsBtnEl.innerHTML = "<strong>°F</strong>/°C";
-    degreeLetter = "F";
-} else {
-    unitsBtnEl.innerHTML = "°F/<strong>°C</strong>";
-    degreeLetter = "C";
-}
+const forecastEl = document.getElementById("forecast");
+const recentDivEl = document.getElementById("recent-cities");
 
 function setUnits(units) {
     let degree = "";
     let speed = "";
     degLetterEls = document.querySelectorAll(".tempLetter");
     windSpeedEls = document.querySelectorAll(".speed");
-    console.log(degLetterEls);
+
+    if (units === "imperial") {
+        unitsBtnEl.innerHTML = "<strong>°F</strong>/°C";
+        degreeLetter = "F";
+    } else {
+        unitsBtnEl.innerHTML = "°F/<strong>°C</strong>";
+        degreeLetter = "C";
+    }
+
     if (units === "metric") {
         degree = "C";
         speed = "KPH";
@@ -48,16 +52,16 @@ function loadForecast(data) {
     forecastEl.innerHTML = "";
 
     for (let i=0; i<5; i++) {
-        var container = document.createElement("div");
-        var dateEl = document.createElement("h2");
-        var day = moment.unix(data.daily[i + 1].dt).format("MM/DD/YYYY");
-        var imgHolderEl = document.createElement("div");
-        var forecastImgEl = document.createElement("img");
-        var weatherStatus = data.daily[i + 1].weather[0].main;
-        var weatherID = data.daily[i + 1].weather[0].id;
-        var tempEl = document.createElement("h4");
-        var windEl = document.createElement("h4");
-        var humidityEl = document.createElement("h4");
+        const container = document.createElement("div");
+        const dateEl = document.createElement("h2");
+        const day = moment.unix(data.daily[i + 1].dt).format("MM/DD/YYYY");
+        const imgHolderEl = document.createElement("div");
+        const forecastImgEl = document.createElement("img");
+        const weatherStatus = data.daily[i + 1].weather[0].main;
+        const weatherID = data.daily[i + 1].weather[0].id;
+        const tempEl = document.createElement("h4");
+        const windEl = document.createElement("h4");
+        const humidityEl = document.createElement("h4");
 
         switch(weatherStatus) {
             case "Thunderstorm":
@@ -71,9 +75,6 @@ function loadForecast(data) {
                 break;
             case "Snow":
                 forecastImgEl.src = "./Assets/Images/13d.png";
-                break;
-            case "Clear":
-                forecastImgEl.src = "./Assets/Images/01d.png";
                 break;
             case "Clear":
                 forecastImgEl.src = "./Assets/Images/01d.png";
@@ -113,15 +114,26 @@ function loadForecast(data) {
     }
 }
 
+function saveCity(cityName) {
+    const recentsStr = localStorage.getItem("recents");
+    const recents = JSON.parse(recentsStr);
+    if (!recents.includes(cityName)) {
+        recents.unshift(cityName);
+        if (recents.length > 10) {
+            recents.pop();
+        }
+        localStorage.setItem("recents", JSON.stringify(recents));
+    }
+}
+
 function requestCity(event) {
     event.preventDefault();
-    let city = document.querySelector(".search-bar form input").value;
+    const city = document.querySelector(".search-bar form input").value;
     fetchWeatherData(city);
 }
 
 function fetchWeatherData(city) {
-    let latlonURL = "http://api.openweathermap.org/geo/1.0/direct?appid=" + APIKey + "&q=" + city;
-    console.log(latlonURL);
+    const latlonURL = "http://api.openweathermap.org/geo/1.0/direct?appid=" + APIKey + "&q=" + city;
     fetch(latlonURL)
         .then(function (response) {
             if (response.status === 400) {
@@ -133,19 +145,19 @@ function fetchWeatherData(city) {
             if (data.length === 0) {
                 alert("Enter a valid city name");
             } else {
+                saveCity(data[0].name);
                 weatherURL = "https://api.openweathermap.org/data/2.5/onecall?appid="+APIKey+"&lat="+data[0].lat+"&lon="+data[0].lon+"&units="+units;
                 fetch(weatherURL)
                     .then(function (response) {
                         return response.json();
                     })
                     .then(function (data) {
-                        console.log(data);
-                        let cityNameEl = document.getElementById("current-city");
-                        let dateEl = document.getElementById("current-date");
-                        let tempEl = document.getElementById("current-temp");
-                        let speedEl = document.getElementById("current-wind");
-                        let humidityEl = document.getElementById("current-humidity");
-                        let UVEl = document.getElementById("current-UV");
+                        const cityNameEl = document.getElementById("current-city");
+                        const dateEl = document.getElementById("current-date");
+                        const tempEl = document.getElementById("current-temp");
+                        const speedEl = document.getElementById("current-wind");
+                        const humidityEl = document.getElementById("current-humidity");
+                        const UVEl = document.getElementById("current-UV");
 
                         cityNameEl.textContent = city;
                         dateEl.textContent = moment().format("MM/DD/YYYY");
@@ -169,18 +181,31 @@ function changeUnits() {
     location.reload();
 }
 
+function loadRecents() {
+    const recents = JSON.parse(localStorage.getItem("recents"));
+
+    for (let i=0; i < recents.length; i++) {
+        const buttonEl = document.createElement("button");
+
+        buttonEl.classList.add("submit-btn", "recent");
+
+        buttonEl.textContent = recents[i];
+
+        recentDivEl.appendChild(buttonEl);
+    }
+}
+
 function loadPage() {
     fetch("http://ip-api.com/json/")
         .then((response) => {
-            console.log(response);
             return response.json();
         })
         .then((data) => {
-            console.log(data);
             fetchWeatherData(data.city);
         })
 }
 
+loadRecents();
 loadPage();
 setUnits(units);
 submitBtnEl.addEventListener("click", requestCity);
