@@ -22,13 +22,17 @@ strong {
 header {
     width: 100vw;
     height: 5vh;
+    min-height: 35px;
     background-image: linear-gradient(to right, rgb(25, 25, 100), rgb(50, 0, 125));
     color: white;
     align-items: center;
 }
 
-main {
+body {
     background-color: lightgrey;
+}
+
+main {
     width: 100vw;
     height: 100vh;
 }
@@ -97,7 +101,7 @@ div.day {
 
 button.recent {
     display: block;
-    width: 50%;
+    width: 66%;
     height: 4vh;
     margin-top: 5%;
     background-color: rgb(75, 100, 150);
@@ -205,8 +209,20 @@ button.recent {
         width: 30px;
     }
 
+    button.recent {
+        width: 46%;
+        height: 8vh;
+        margin: 1% 2%;
+        font-size: large;
+    }
+
     .container section {
         width: 100vw;
+    }
+
+    #recent-cities {
+        flex-direction: row;
+        flex-wrap: wrap;
     }
 
     #current-data {
@@ -216,9 +232,33 @@ button.recent {
     #main-container {
         flex-direction: column;
     }
+
+    #units {
+        top: 5px;
+        right: 5px;
+    }
 }
 
-@media only screen and (min-width: 821px) {
+@media only screen and (max-width: 1280px) {
+    h1, h2, h3 {
+        font-size: x-large;
+    }
+    
+    h4, h5, h6 {
+        font-size: large;
+    }
+
+    section div.flex-column {
+        margin-right: 0;
+        padding: 2px;
+    }
+    
+    #current-data h1, #current-data h2, #current-data h3, #current-data h4, #current-data h5, #current-data h6 {
+        padding: 10px;
+    }
+}
+
+@media only screen and (min-width: 1281px) {
     form input {
         height: 3vh;
         width: 12vw;
@@ -234,13 +274,13 @@ button.recent {
         width: 250px;
     }
 
-    #current-data {
-        min-height: 300px;
-    }
-
     .submit-btn {
         height: 3vh;
         width: 8vw;
         font-size: larger;
+    }
+
+    #current-data {
+        min-height: 300px;
     }
 }

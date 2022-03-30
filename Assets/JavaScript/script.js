@@ -6,7 +6,7 @@ if (localStorage.getItem("recents") === null) {
     localStorage.setItem("recents", "[]");
 }
 const units = localStorage.getItem("Preferred Units");
-const submitBtnEl = document.getElementById("submit-btn");
+const asideEl = document.querySelector(".search-bar");
 const unitsBtnEl = document.getElementById("units");
 let degreeLetter = "";
 let degLetterEls = document.querySelectorAll(".tempLetter");
@@ -128,8 +128,14 @@ function saveCity(cityName) {
 
 function requestCity(event) {
     event.preventDefault();
-    const city = document.querySelector(".search-bar form input").value;
-    fetchWeatherData(city);
+
+    if (event.target.classList.contains("recent")) {
+        const city = event.target.textContent;
+        fetchWeatherData(city);
+    } else if (event.target.getAttribute("id") === "submit-btn") {
+        const city = document.querySelector(".search-bar form input").value;
+        fetchWeatherData(city);
+    }
 }
 
 function fetchWeatherData(city) {
@@ -167,6 +173,7 @@ function fetchWeatherData(city) {
                         UVEl.textContent = data.current.uvi.toFixed(2);
 
                         loadForecast(data);
+                        loadRecents();
                     });
             }
         });
@@ -181,8 +188,14 @@ function changeUnits() {
     location.reload();
 }
 
+function requestRecent() {
+
+}
+
 function loadRecents() {
     const recents = JSON.parse(localStorage.getItem("recents"));
+
+    recentDivEl.innerHTML = "";
 
     for (let i=0; i < recents.length; i++) {
         const buttonEl = document.createElement("button");
@@ -205,7 +218,6 @@ function loadPage() {
         })
 }
 
-loadRecents();
 loadPage();
 setUnits(units);
-submitBtnEl.addEventListener("click", requestCity);
+asideEl.addEventListener("click", requestCity);
