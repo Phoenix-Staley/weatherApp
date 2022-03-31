@@ -212,7 +212,7 @@ function loadPage() {
     loadRecents();
 
     // This fetches the user's current location, but doesn't work when hosted using HTTPS
-    fetch("http://ip-api.com/json/", {mode: 'cors'})
+    fetch("http://ip-api.com/json/", {method: "POST", body: JSON.stringify(data), mode: 'cors', headers: {'Content-Type': 'application/json',}})
         .then((response) => {
             return response.json();
         })
