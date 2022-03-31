@@ -166,7 +166,7 @@ function fetchWeatherData(city) {
                         const UVEl = document.getElementById("current-UV");
 
                         cityNameEl.textContent = city;
-                        dateEl.textContent = moment().format("MM/DD/YYYY");
+                        dateEl.textContent = moment.unix(data.daily[0].dt).format("MM/DD/YYYY");
                         tempEl.textContent = data.current.temp.toString();
                         speedEl.textContent = data.current.wind_speed.toString();
                         humidityEl.textContent = data.current.humidity.toString();
