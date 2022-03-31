@@ -139,7 +139,7 @@ function requestCity(event) {
 }
 
 function fetchWeatherData(city) {
-    const latlonURL = "http://api.openweathermap.org/geo/1.0/direct?appid=" + APIKey + "&q=" + city;
+    const latlonURL = "https://api.openweathermap.org/geo/1.0/direct?appid=" + APIKey + "&q=" + city;
     fetch(latlonURL)
         .then(function (response) {
             if (response.status === 400) {
@@ -209,13 +209,16 @@ function loadRecents() {
 }
 
 function loadPage() {
-    fetch("http://ip-api.com/json/")
-        .then((response) => {
-            return response.json();
-        })
-        .then((data) => {
-            fetchWeatherData(data.city);
-        })
+    loadRecents();
+
+    // This fetches the user's current location, but doesn't work when hosted using HTTPS
+    // fetch("http://ip-api.com/json/")
+    //     .then((response) => {
+    //         return response.json();
+    //     })
+    //     .then((data) => {
+    //         fetchWeatherData(data.city);
+    //     })
 }
 
 loadPage();
