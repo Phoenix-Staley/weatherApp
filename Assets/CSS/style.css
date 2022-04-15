@@ -88,12 +88,16 @@ section div.flex-column {
 div.day {
     background-color: var(--pale-blue);
     color: white;
-    margin: 5px 15px;
+    margin: 5px 10px;
     min-height: 230px;
+    max-width: 240px;
     /* width: 250px; */
     /* height: 25vh; */
     display: inline-block;
-    padding: 5px;
+    padding: 10px;
+    border-radius: 8px;
+    border-width: 2px;
+    border-style: inset;
 }
 
 .day h4 {
