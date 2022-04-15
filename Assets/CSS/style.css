@@ -89,6 +89,7 @@ div.day {
     background-color: var(--pale-blue);
     color: white;
     margin: 5px 15px;
+    min-height: 230px;
     /* width: 250px; */
     /* height: 25vh; */
     display: inline-block;
