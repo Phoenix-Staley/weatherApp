@@ -19,5 +19,5 @@ I developed this app as a homework assignment for a coding bootcamp I'm attendin
 
 ## Live Link
 
-- - -
 [Deployed page](https://phoenix-staley.github.io/weatherApp/)
+- - -
