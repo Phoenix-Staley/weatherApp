@@ -6,7 +6,6 @@ if (localStorage.getItem("recents") === null) {
     localStorage.setItem("recents", "[]");
 }
 const units = localStorage.getItem("Preferred Units");
-const pageTitle = document.querySelector("#pageTitle");
 const asideEl = document.querySelector(".search-bar");
 const unitsBtnEl = document.getElementById("units");
 let degreeLetter = "";
@@ -166,7 +165,6 @@ function fetchWeatherData(city) {
                         const humidityEl = document.getElementById("current-humidity");
                         const UVEl = document.getElementById("current-UV");
 
-                        pageTitle.textContent = city + " - Weather Wise";
                         cityNameEl.textContent = city;
                         dateEl.textContent = moment.unix(data.daily[0].dt).format("MM/DD/YYYY");
                         tempEl.textContent = data.current.temp.toString();
